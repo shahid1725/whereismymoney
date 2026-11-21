@@ -28,10 +28,17 @@ SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 DEBUG = os.environ.get('DJANGO_DEBUG', 'False').lower() == 'true'
 
-ALLOWED_HOSTS = os.environ.get(
-    'DJANGO_ALLOWED_HOSTS',
-    'localhost,127.0.0.1',
-).split(',')
+ALLOWED_HOSTS = [
+    'whereismymoney-xsg2.vercel.app',
+    *[
+        host.strip()
+        for host in os.environ.get(
+            'DJANGO_ALLOWED_HOSTS',
+            'localhost,127.0.0.1',
+        ).split(',')
+        if host.strip()
+    ],
+]
 
 
 # Application definition

@@ -1,11 +1,19 @@
 import logging
 
+from django.http import JsonResponse
 from django.db.models.deletion import ProtectedError
 from rest_framework import permissions, status, viewsets
 from rest_framework.response import Response
 
 
 logger = logging.getLogger(__name__)
+
+
+def health_check(request):
+    return JsonResponse({
+        'status': 'success',
+        'message': 'Backend API is running',
+    })
 
 
 class UserOwnedModelViewSet(viewsets.ModelViewSet):

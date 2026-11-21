@@ -19,7 +19,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import include, path
 
+from whereismymoney.views import health_check
+
 urlpatterns = [
+    path('', health_check, name='health-check'),
     path('admin/', admin.site.urls),
     path('api/auth/', include('user.urls')),
     path('api/accounts/', include('account.urls')),
